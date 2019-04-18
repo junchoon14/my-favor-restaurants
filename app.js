@@ -1,8 +1,10 @@
 const express = require('express')
+const exphbs = require('express-handlebars')
 const app = express()
 const mongoose = require('mongoose')
 
-
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
 
 mongoose.connect('mongodb://localhost/restauant', { useNewUrlParser: true })
 
@@ -20,7 +22,7 @@ const Restaurant = require('./models/restaurant')
 
 //main
 app.get('/', (req, res) => {
-  res.send('index')
+  res.render('index')
 })
 
 app.get('/restaurants', (req, res) => {
