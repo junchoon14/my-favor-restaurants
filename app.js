@@ -2,11 +2,13 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
 
@@ -36,11 +38,15 @@ app.get('/restaurants', (req, res) => {
 
 // create
 app.get('/restaurants/new', (req, res) => {
-  res.send('new')
+  return res.render('new')
 })
 
 app.post('/restaurants', (req, res) => {
-  res.send('add new')
+  const restaurant = Restaurant(req.body)
+  restaurant.save(err => {
+    if (err) console.error(err)
+    return res.redirect('/')
+  })
 })
 
 //read
