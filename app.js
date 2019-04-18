@@ -6,7 +6,9 @@ const mongoose = require('mongoose')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
-mongoose.connect('mongodb://localhost/restauant', { useNewUrlParser: true })
+app.use(express.static('public'))
+
+mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
 
 const db = mongoose.connection
 
@@ -22,7 +24,10 @@ const Restaurant = require('./models/restaurant')
 
 //main
 app.get('/', (req, res) => {
-  res.render('index')
+  Restaurant.find((err, restaurants) => {
+    if (err) console.error(err)
+    res.render('index', { restaurants: restaurants })
+  })
 })
 
 app.get('/restaurants', (req, res) => {
