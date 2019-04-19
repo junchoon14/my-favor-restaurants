@@ -55,16 +55,24 @@ app.get('/restaurants/:id', (req, res) => {
     if (err) console.error(err)
     return res.render('detail', { restaurant })
   })
-
 })
 
 //edit
 app.get('/restaurants/:id/edit', (req, res) => {
-  res.send('edit')
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) console.error(err)
+    return res.render('edit', { restaurant })
+  })
 })
 
 app.post('/restaurants/:id', (req, res) => {
-  res.send('edit')
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) console.error(err)
+    restaurant = Restaurant(req.body)
+    restaurant.save(err => {
+      return res.redirect(`/restaurants/${req.params.id}`)
+    })
+  })
 })
 
 //delete
