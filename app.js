@@ -51,13 +51,18 @@ app.post('/restaurants', (req, res) => {
 
 //read
 app.get('/restaurants/:id', (req, res) => {
-  res.send('read')
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) console.error(err)
+    return res.render('detail', { restaurant })
+  })
+
 })
 
 //edit
 app.get('/restaurants/:id/edit', (req, res) => {
   res.send('edit')
 })
+
 app.post('/restaurants/:id', (req, res) => {
   res.send('edit')
 })

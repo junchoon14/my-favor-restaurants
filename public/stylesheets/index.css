@@ -63,11 +63,6 @@ header {
   box-shadow: 0 3px 10px rgba(151, 62, 62, 0.1);
 }
 
-/*---- delete icon ---*/
-.delete_cut:hover {
-  color: rgb(201, 103, 103);
-}
-
 /*---- new page for form ---*/
 .form_container {
   margin: 20px auto;
