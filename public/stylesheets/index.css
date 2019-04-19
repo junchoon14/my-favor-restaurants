@@ -79,6 +79,13 @@ header {
   color: #9b4b4b;
 }
 
+/*---- new page for form ---*/
+.sort-menu {
+
+  margin: 0 auto;
+  widows: 300px;
+}
+
 .form-control::placeholder {
   color: #aaaaaa;
   font-size: 0.8rem;

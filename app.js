@@ -14,6 +14,7 @@ app.use(methodOverride('_method'))
 
 app.use('/', require('./routes/home'))
 app.use('/restaurants', require('./routes/restaurant'))
+app.use('/users', require('./routes/user'))
 
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
 
