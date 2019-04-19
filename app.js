@@ -26,10 +26,12 @@ const Restaurant = require('./models/restaurant')
 
 //main
 app.get('/', (req, res) => {
-  Restaurant.find((err, restaurants) => {
-    if (err) console.error(err)
-    res.render('index', { restaurants: restaurants })
-  })
+  Restaurant.find({})
+    .sort({ name_en: 'asc' })
+    .exec((err, restaurants) => {
+      if (err) console.error(err)
+      res.render('index', { restaurants })
+    })
 })
 
 app.get('/restaurants', (req, res) => {
@@ -70,16 +72,35 @@ app.post('/restaurants/:id', (req, res) => {
     if (err) console.error(err)
     restaurant = Restaurant(req.body)
     restaurant.save(err => {
+      if (err) console.error(err)
       return res.redirect(`/restaurants/${req.params.id}`)
     })
   })
 })
 
 //delete
-app.post('/restaurants:id/delete', (req, res) => {
-  res.send('delete')
+app.post('/restaurants/:id/delete', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) console.error(err)
+    restaurant.remove(err => {
+      if (err) console.error(err)
+      return res.redirect('/')
+    })
+  })
 })
 
+//search
+app.get('/search', (req, res) => {
+  Restaurant.find((err, restaurants) => {
+    const restaurant = restaurants.filter(restaurant => {
+      const keyword = req.query.keyword.toLowerCase()
+      const name = restaurant.name.toLowerCase()
+      const category = restaurant.category.toLowerCase()
+      return name.includes(keyword) || category.includes(keyword)
+    })
+    return res.render('index', { restaurants: restaurant, keyword: req.query.keyword })
+  })
+})
 
 app.listen(3000, () => {
   console.log('App is running!')
