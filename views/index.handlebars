@@ -18,7 +18,7 @@
 
 <!-- sort menu -->
 <div class="container sort-menu mt-3">
-  <div class="dropdown float-right">
+  <div class="dropdown ">
     <button class="btn btn-major dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false">
       排列方式
@@ -52,7 +52,7 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
 
-              <form action="/restaurants/{{this.id}}/delete" method="POST" class="float-right">
+              <form action="/restaurants/{{this.id}}/delete?_method=DELETE" method="POST" class="float-right">
                 <button type="submit" class="btn btn-light"><i class="fas fa-cut"></i></button>
               </form>
 
