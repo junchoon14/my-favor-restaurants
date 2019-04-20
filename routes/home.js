@@ -42,6 +42,25 @@ router.get('/sort=location', (req, res) => {
     })
 })
 
+// sort by rating
+router.get('/sort=rating', (req, res) => {
+  Restaurant.find({})
+    .sort('rating')
+    .exec((err, restaurants) => {
+      if (err) console.error(err)
+      res.render('index', { restaurants })
+    })
+})
+
+router.get('/sort=rating-desc', (req, res) => {
+  Restaurant.find({})
+    .sort('-rating')
+    .exec((err, restaurants) => {
+      if (err) console.error(err)
+      res.render('index', { restaurants })
+    })
+})
+
 // search
 router.get('/search', (req, res) => {
   Restaurant.find((err, restaurants) => {
