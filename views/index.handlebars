@@ -57,15 +57,16 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
 
-              <form action="/restaurants/{{this.id}}/delete?_method=DELETE" method="POST" class="float-right">
-                <button type="submit" class="btn btn-light"><i class="fas fa-cut"></i></button>
-              </form>
+              <div class="row justify-content-end">
 
-              <a href="/restaurants/{{{this.id}}}/edit" class="btn btn-light float-right"><i
-                  class="fas fa-edit"></i></a>
-              <a href="/restaurants/{{{this.id}}}" class="btn btn-light float-right"><i
-                  class="fab fa-readme"></i></i></a>
-
+                <a href="/restaurants/{{{this.id}}}" class="btn btn-light float-right"><i
+                    class="fab fa-readme"></i></i></a>
+                <a href="/restaurants/{{{this.id}}}/edit" class="btn btn-light float-right"><i
+                    class="fas fa-edit"></i></a>
+                <form action="/restaurants/{{this.id}}/delete?_method=DELETE" method="POST" class="">
+                  <button type="submit" class="btn btn-light"><i class="fas fa-cut"></i></button>
+                </form>
+              </div>
             </div>
           </div>
         </a>
