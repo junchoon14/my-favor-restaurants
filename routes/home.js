@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../models/restaurant')
 
-//main
+// main
 router.get('/', (req, res) => {
   Restaurant.find({})
     .sort({ name_en: 'asc' })
@@ -12,7 +12,37 @@ router.get('/', (req, res) => {
     })
 })
 
-//search
+// sort by descending
+router.get('/sort=desc', (req, res) => {
+  Restaurant.find({})
+    .sort('-name_en')
+    .exec((err, restaurants) => {
+      if (err) console.error(err)
+      res.render('index', { restaurants })
+    })
+})
+
+// sort by category
+router.get('/sort=category', (req, res) => {
+  Restaurant.find({})
+    .sort('category')
+    .exec((err, restaurants) => {
+      if (err) console.error(err)
+      res.render('index', { restaurants })
+    })
+})
+
+// sort by location
+router.get('/sort=location', (req, res) => {
+  Restaurant.find({})
+    .sort('location')
+    .exec((err, restaurants) => {
+      if (err) console.error(err)
+      res.render('index', { restaurants })
+    })
+})
+
+// search
 router.get('/search', (req, res) => {
   Restaurant.find((err, restaurants) => {
     const restaurant = restaurants.filter(restaurant => {
