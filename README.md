@@ -1,7 +1,7 @@
 # 餐廳清單 :wink:
 ### Restaurant List Web
 ---
-![restaurant](./s4a5q1.jpg)
+![restaurant](./s4q1.jpg)
 ---
 
 1. **可以在首頁看到所有餐廳與它們的簡單資料：**
