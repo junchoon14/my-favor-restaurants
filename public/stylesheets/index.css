@@ -20,15 +20,6 @@ header {
   filter: blur(3px);
 }
 
-/*---- edit button & delete button ---*/
-.edit_button, .delete_button {
-  margin: 10px 30px 50px 0;
-}
-
-.edit_button:hover, .delete_button:hover {
-  background-color: rgb(175, 173, 173);
-}
-
 /*---- search bar ---*/
 .search-bar .search-bar-outer, .form_container {
   margin: 0 auto;
@@ -76,7 +67,11 @@ header {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.card img{
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card img {
   height: 180px;
 }
 
