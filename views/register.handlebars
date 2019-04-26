@@ -1,1 +1,63 @@
-<h2>Register</h2>
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body form_container">
+      <h4 class="text-center mb-3 font-color">註冊帳號</h4>
+      <form action="/users/register" method="POST">
+
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label for="name" class="input-group-text bg-light">
+                Name
+              </label>
+            </div>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name">
+            <small class="feedback small text-danger"></small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label for="email" class="input-group-text bg-light">
+                Email
+              </label>
+            </div>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email">
+            <small class="feedback small text-danger"></small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label for="password" class="input-group-text bg-light">
+                密碼
+              </label>
+            </div>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password">
+            <small class="feedback small text-danger"></small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label for="password2" class="input-group-text bg-light">
+                確認密碼
+              </label>
+            </div>
+            <input type="password2" id="password2" name="password2" class="form-control" placeholder="Confirm Password">
+            <small class="feedback small text-danger"></small>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-info btn-block delete_button">註冊</button>
+      </form>
+
+      <p class="lead mt-4">
+        已經有帳號? <a href="/users/login">登入</a>
+      </p>
+    </div>
+  </div>
+</div>
