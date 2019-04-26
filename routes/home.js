@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 })
 
 // sort by descending
-router.get('/sort=desc', (req, res) => {
+router.get('/sort_desc', (req, res) => {
   Restaurant.find({})
     .sort('-name_en')
     .exec((err, restaurants) => {
@@ -23,7 +23,7 @@ router.get('/sort=desc', (req, res) => {
 })
 
 // sort by category
-router.get('/sort=category', (req, res) => {
+router.get('/sort_category', (req, res) => {
   Restaurant.find({})
     .sort('category')
     .exec((err, restaurants) => {
@@ -33,7 +33,7 @@ router.get('/sort=category', (req, res) => {
 })
 
 // sort by location
-router.get('/sort=location', (req, res) => {
+router.get('/sort_location', (req, res) => {
   Restaurant.find({})
     .sort('location')
     .exec((err, restaurants) => {
@@ -43,7 +43,7 @@ router.get('/sort=location', (req, res) => {
 })
 
 // sort by rating
-router.get('/sort=rating', (req, res) => {
+router.get('/sort_rating', (req, res) => {
   Restaurant.find({})
     .sort('rating')
     .exec((err, restaurants) => {
@@ -52,7 +52,7 @@ router.get('/sort=rating', (req, res) => {
     })
 })
 
-router.get('/sort=rating-desc', (req, res) => {
+router.get('/sort_rating-desc', (req, res) => {
   Restaurant.find({})
     .sort('-rating')
     .exec((err, restaurants) => {
