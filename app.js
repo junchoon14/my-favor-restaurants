@@ -9,22 +9,9 @@ const passport = require('passport')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
-
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-app.use(session({
-  secrete: 'IamAwesome'
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-
-require('./config/passport')(passport)
-
-app.use((req, res, next) => {
-  res.locals.use = req.user
-  next()
-})
 
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
 
@@ -33,9 +20,22 @@ const db = mongoose.connection
 db.on('error', () => {
   console.log('db error!')
 })
-
 db.once('open', () => {
   console.log('db connected!')
+})
+
+app.use(session({
+  secret: 'IamAwesome'
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+require('./config/passport')(passport)
+
+app.use((req, res, next) => {
+  res.locals.use = req.user
+  next()
 })
 
 const Restaurant = require('./models/restaurant')

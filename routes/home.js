@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../models/restaurant')
+const { authenticated } = require('../config/auth')
 
 // main
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   Restaurant.find({})
     .sort({ name_en: 'asc' })
     .exec((err, restaurants) => {
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
 })
 
 // sort by descending
-router.get('/sort_desc', (req, res) => {
+router.get('/sort_desc', authenticated, (req, res) => {
   Restaurant.find({})
     .sort('-name_en')
     .exec((err, restaurants) => {
@@ -23,7 +24,7 @@ router.get('/sort_desc', (req, res) => {
 })
 
 // sort by category
-router.get('/sort_category', (req, res) => {
+router.get('/sort_category', authenticated, (req, res) => {
   Restaurant.find({})
     .sort('category')
     .exec((err, restaurants) => {
@@ -33,7 +34,7 @@ router.get('/sort_category', (req, res) => {
 })
 
 // sort by location
-router.get('/sort_location', (req, res) => {
+router.get('/sort_location', authenticated, (req, res) => {
   Restaurant.find({})
     .sort('location')
     .exec((err, restaurants) => {
@@ -43,7 +44,7 @@ router.get('/sort_location', (req, res) => {
 })
 
 // sort by rating
-router.get('/sort_rating', (req, res) => {
+router.get('/sort_rating', authenticated, (req, res) => {
   Restaurant.find({})
     .sort('rating')
     .exec((err, restaurants) => {
@@ -52,7 +53,7 @@ router.get('/sort_rating', (req, res) => {
     })
 })
 
-router.get('/sort_rating-desc', (req, res) => {
+router.get('/sort_rating-desc', authenticated, (req, res) => {
   Restaurant.find({})
     .sort('-rating')
     .exec((err, restaurants) => {
@@ -62,7 +63,7 @@ router.get('/sort_rating-desc', (req, res) => {
 })
 
 // search
-router.get('/search', (req, res) => {
+router.get('/search', authenticated, (req, res) => {
   Restaurant.find((err, restaurants) => {
     const restaurant = restaurants.filter(restaurant => {
       const keyword = req.query.keyword.toLowerCase()
