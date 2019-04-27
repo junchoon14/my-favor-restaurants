@@ -5,7 +5,7 @@ const { authenticated } = require('../config/auth')
 
 // main
 router.get('/', authenticated, (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort({ name_en: 'asc' })
     .exec((err, restaurants) => {
       if (err) console.error(err)
@@ -15,7 +15,7 @@ router.get('/', authenticated, (req, res) => {
 
 // sort by descending
 router.get('/sort_desc', authenticated, (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort('-name_en')
     .exec((err, restaurants) => {
       if (err) console.error(err)
@@ -25,7 +25,7 @@ router.get('/sort_desc', authenticated, (req, res) => {
 
 // sort by category
 router.get('/sort_category', authenticated, (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort('category')
     .exec((err, restaurants) => {
       if (err) console.error(err)
@@ -35,7 +35,7 @@ router.get('/sort_category', authenticated, (req, res) => {
 
 // sort by location
 router.get('/sort_location', authenticated, (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort('location')
     .exec((err, restaurants) => {
       if (err) console.error(err)
@@ -45,7 +45,7 @@ router.get('/sort_location', authenticated, (req, res) => {
 
 // sort by rating
 router.get('/sort_rating', authenticated, (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort('rating')
     .exec((err, restaurants) => {
       if (err) console.error(err)
@@ -54,7 +54,7 @@ router.get('/sort_rating', authenticated, (req, res) => {
 })
 
 router.get('/sort_rating-desc', authenticated, (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort('-rating')
     .exec((err, restaurants) => {
       if (err) console.error(err)
@@ -64,7 +64,7 @@ router.get('/sort_rating-desc', authenticated, (req, res) => {
 
 // search
 router.get('/search', authenticated, (req, res) => {
-  Restaurant.find((err, restaurants) => {
+  Restaurant.find({ userId: req.user._id }, (err, restaurants) => {
     const restaurant = restaurants.filter(restaurant => {
       const keyword = req.query.keyword.toLowerCase()
       const name = restaurant.name.toLowerCase()

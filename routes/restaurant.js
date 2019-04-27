@@ -13,7 +13,18 @@ router.get('/new', authenticated, (req, res) => {
 })
 
 router.post('/', authenticated, (req, res) => {
-  const restaurant = Restaurant(req.body)
+  const restaurant = Restaurant({
+    name: req.body.name,
+    name_en: req.body.name_en,
+    category: req.body.category,
+    image: req.body.image,
+    location: req.body.location,
+    phone: req.body.phone,
+    google_map: req.body.google_map,
+    rating: req.body.rating,
+    description: req.body.description,
+    userId: req.user._id,
+  })
   restaurant.save(err => {
     if (err) console.error(err)
     return res.redirect('/')
@@ -22,7 +33,7 @@ router.post('/', authenticated, (req, res) => {
 
 //read
 router.get('/:id', authenticated, (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) console.error(err)
     return res.render('detail', { restaurant })
   })
@@ -30,14 +41,14 @@ router.get('/:id', authenticated, (req, res) => {
 
 //edit
 router.get('/:id/edit', authenticated, (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) console.error(err)
     return res.render('edit', { restaurant })
   })
 })
 
 router.put('/:id', authenticated, (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) console.error(err)
     restaurant = Restaurant(req.body)
     restaurant.save(err => {
@@ -49,7 +60,7 @@ router.put('/:id', authenticated, (req, res) => {
 
 //delete
 router.delete('/:id/delete', authenticated, (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) console.error(err)
     restaurant.remove(err => {
       if (err) console.error(err)
