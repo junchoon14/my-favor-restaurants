@@ -12,12 +12,12 @@ module.exports = passport => {
               message: 'That email is not registered'
             })
           }
-          if (!user.verifyPassword(password)) {
+          if (user.password != password) {
             return done(null, false, {
               message: 'Email or password incorrect'
             })
           }
-          return done(null, user);
+          return done(null, user)
         })
       }
     )
