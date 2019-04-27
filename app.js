@@ -1,4 +1,7 @@
 const express = require('express')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const exphbs = require('express-handlebars')
 const app = express()
 const mongoose = require('mongoose')
@@ -46,6 +49,7 @@ const Restaurant = require('./models/restaurant')
 app.use('/', require('./routes/home'))
 app.use('/restaurants', require('./routes/restaurant'))
 app.use('/users', require('./routes/user'))
+app.use('/auth', require('./routes/auths'))
 
 app.listen(3000, () => {
   console.log('App is running!')
