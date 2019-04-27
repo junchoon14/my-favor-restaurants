@@ -18,26 +18,28 @@
 
 <!-- sort menu-->
 <div class="container mt-3">
-  <div class="row justify-content-end">
-    <div class="col-3">
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          排列方式
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="/">A -> Z</a>
-          <a class="dropdown-item" href="/sort_desc">Z -> A</a>
-          <a class="dropdown-item" href="/sort_category">類別</a>
-          <a class="dropdown-item" href="/sort_location">地區</a>
-          <a class="dropdown-item" href="/sort_rating">評分 低至高</a>
-          <a class="dropdown-item" href="/sort_rating-desc">評分 高至低</a>
 
-        </div>
+  <div class="row justify-content-between">
+    <a href="/restaurants/new" class="btn btn-info  ml-3">加入餐廳</a>
+
+    <div class="btn-group mr-3">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        排列方式
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/">A -> Z</a>
+        <a class="dropdown-item" href="/sort_desc">Z -> A</a>
+        <a class="dropdown-item" href="/sort_category">類別</a>
+        <a class="dropdown-item" href="/sort_location">地區</a>
+        <a class="dropdown-item" href="/sort_rating">評分 低至高</a>
+        <a class="dropdown-item" href="/sort_rating-desc">評分 高至低</a>
+
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- restaurant list -->
 <div class="container restaurant mt-3">
