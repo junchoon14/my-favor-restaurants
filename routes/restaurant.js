@@ -13,16 +13,7 @@ router.get('/new', authenticated, (req, res) => {
 })
 
 router.post('/', authenticated, (req, res) => {
-  const restaurant = Restaurant({
-    name: req.body.name,
-    name_en: req.body.name_en,
-    category: req.body.category,
-    image: req.body.image,
-    location: req.body.location,
-    phone: req.body.phone,
-    google_map: req.body.google_map,
-    rating: req.body.rating,
-    description: req.body.description,
+  const restaurant = Restaurant(req.body, {
     userId: req.user._id,
   })
   restaurant.save(err => {
